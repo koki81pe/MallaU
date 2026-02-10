@@ -9,7 +9,7 @@ FECHA: 10/02/2026 09:45 (UTC-5)
 */
 // MOD-001: FIN
 
-// MOD-003: Enrutador doGet y URL de la app [INICIO]
+// MOD-002: Enrutador doGet y URL de la app [INICIO]
 // Función principal que maneja las peticiones GET
 function doGet(e) {
   const page = e.parameter.page;
@@ -38,9 +38,9 @@ function doGet(e) {
 function obtenerUrlApp() {
   return ScriptApp.getService().getUrl();
 }
-// MOD-003: FIN
+// MOD-002: FIN
 
-// MOD-004: Auxiliares de generación y verificación de codes [INICIO]
+// MOD-003: Auxiliares de generación y verificación de codes [INICIO]
 // Generar 6 letras aleatorias
 function generarLetrasAleatorias() {
   const letras = 'abcdefghijklmnopqrstuvwxyz';
@@ -98,9 +98,9 @@ function verificarCodeExiste(code) {
 
   return false;
 }
-// MOD-004: FIN
+// MOD-003: FIN
 
-// MOD-005: Cargar Malla Matriz desde URL de Google Sheet [INICIO]
+// MOD-004: Cargar Malla Matriz desde URL de Google Sheet [INICIO]
 function cargarMallaMatrizDesdeURL(institucion, carrera, urlSheet) {
   try {
     // Extraer el ID del Google Sheet de la URL
@@ -160,9 +160,9 @@ function cargarMallaMatrizDesdeURL(institucion, carrera, urlSheet) {
     };
   }
 }
-// MOD-005: FIN
+// MOD-004: FIN
 
-// MOD-006: Cargar Malla Matriz desde datos CSV [INICIO]
+// MOD-005: Cargar Malla Matriz desde datos CSV [INICIO]
 function cargarMallaMatrizDesdeCSV(institucion, carrera, csvData) {
   try {
     const lines = csvData.split('\n');
@@ -213,9 +213,9 @@ function cargarMallaMatrizDesdeCSV(institucion, carrera, csvData) {
     };
   }
 }
-// MOD-006: FIN
+// MOD-005: FIN
 
-// MOD-007: Guardar en hoja Matriz e Institutos [INICIO]
+// MOD-006: Guardar en hoja Matriz e Institutos [INICIO]
 // Guardar cursos en hoja Matriz
 function guardarEnMatriz(cursos) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -261,9 +261,9 @@ function guardarInstitutoCarrera(instituto, carrera) {
     sheet.getRange(lastRow + 1, 1, 1, 2).setValues([[instituto, carrera]]);
   }
 }
-// MOD-007: FIN
+// MOD-006: FIN
 
-// MOD-008: Leer institutos y carreras [INICIO]
+// MOD-007: Leer institutos y carreras [INICIO]
 // Obtener lista de institutos
 function obtenerInstitutos() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -295,9 +295,9 @@ function obtenerCarrerasPorInstituto(instituto) {
 
   return carreras;
 }
-// MOD-008: FIN
+// MOD-007: FIN
 
-// MOD-009: Generar malla del estudiante [INICIO]
+// MOD-008: Generar malla del estudiante [INICIO]
 // Generar malla para un estudiante (con clave personalizada opcional)
 function generarMallaEstudiante(nombre, instituto, carrera, clavepersonalizada) {
   try {
@@ -375,9 +375,9 @@ function copiarMallaDesdeMatriz(code, nombre, instituto, carrera) {
     sheetMalla.getRange(lastRow + 1, 1, cursosEstudiante.length, 9).setValues(cursosEstudiante);
   }
 }
-// MOD-009: FIN
+// MOD-008: FIN
 
-// MOD-010: Obtener y consultar estudiantes [INICIO]
+// MOD-009: Obtener y consultar estudiantes [INICIO]
 // Obtener todos los estudiantes
 function obtenerEstudiantes() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -449,9 +449,9 @@ function consultarEstudiantes(filtroNombre, filtroInstituto, filtroCarrera) {
     return [];
   }
 }
-// MOD-010: FIN
+// MOD-009: FIN
 
-// MOD-011: Leer datos y malla del estudiante [INICIO]
+// MOD-010: Leer datos y malla del estudiante [INICIO]
 // Obtener datos del estudiante por code
 function obtenerDatosEstudiante(code) {
   try {
@@ -505,9 +505,9 @@ function obtenerMallaEstudiante(code) {
 
   return cursos;
 }
-// MOD-011: FIN
+// MOD-010: FIN
 
-// MOD-012: Guardar cambios y visibilidad de malla [INICIO]
+// MOD-011: Guardar cambios y visibilidad de malla [INICIO]
 // Guardar cambios en la malla del estudiante (masivo)
 function guardarCambiosMalla(code, cambios) {
   try {
@@ -563,9 +563,9 @@ function actualizarVisibilidadNivel(code, nivel, visible) {
     return { success: false, message: error.toString() };
   }
 }
-// MOD-012: FIN
+// MOD-011: FIN
 
-// MOD-013: Verificar clave de administrador [INICIO]
+// MOD-012: Verificar clave de administrador [INICIO]
 function verificarClaveAdmin(clave) {
   try {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -603,7 +603,7 @@ function verificarClaveAdmin(clave) {
     return { success: false, message: 'Error al verificar clave' };
   }
 }
-// MOD-013: FIN
+// MOD-012: FIN
 
 // MOD-099: NOTAS [INICIO]
 /*
