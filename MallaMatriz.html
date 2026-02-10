@@ -1,463 +1,524 @@
+<!-- MOD-001: ENCABEZADO [INICIO] -->
+<!--
+*****************************************
+PROYECTO: MallaU
+ARCHIVO: MallaMatriz.html
+VERSIÓN: 01.00
+FECHA: 10/02/2026 11:43 (UTC-5)
+*****************************************
+-->
+<!-- MOD-001: FIN -->
+
+<!-- MOD-002: DOCTYPE Y APERTURA HTML [INICIO] -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cargar Malla Matriz</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<!-- MOD-002: FIN -->
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 20px;
-    }
+<!-- MOD-003: ESTILOS [INICIO] -->
+<style>
+/* MOD-003-001: Reset y estilos base [INICIO] */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      overflow: hidden;
-    }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+/* MOD-003-001: FIN */
 
-    .header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 30px;
-      position: relative;
-    }
+/* MOD-003-002: Contenedor principal [INICIO] */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+/* MOD-003-002: FIN */
 
-    .header h1 {
-      font-size: 2em;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    }
+/* MOD-003-003: Header [INICIO] */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px;
+  position: relative;
+}
 
-    .header p {
-      opacity: 0.9;
-    }
+.header h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
 
-    .btn-home {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      padding: 10px 20px;
-      border: 2px solid white;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
+.header p {
+  opacity: 0.9;
+}
 
-    .btn-home:hover {
-      background: white;
-      color: #667eea;
-    }
+.btn-home {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  padding: 10px 20px;
+  border: 2px solid white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
 
-    .content {
-      padding: 40px;
-    }
+.btn-home:hover {
+  background: white;
+  color: #667eea;
+}
+/* MOD-003-003: FIN */
 
-    .info-box {
-      background: #e3f2fd;
-      border-left: 4px solid #2196f3;
-      padding: 20px;
-      margin-bottom: 30px;
-      border-radius: 5px;
-    }
+/* MOD-003-004: Área de contenido [INICIO] */
+.content {
+  padding: 40px;
+}
+/* MOD-003-004: FIN */
 
-    .info-box h3 {
-      color: #1976d2;
-      margin-bottom: 10px;
-    }
+/* MOD-003-005: Caja de información [INICIO] */
+.info-box {
+  background: #e3f2fd;
+  border-left: 4px solid #2196f3;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}
 
-    .info-box ul {
-      margin-left: 20px;
-      color: #424242;
-    }
+.info-box h3 {
+  color: #1976d2;
+  margin-bottom: 10px;
+}
 
-    .info-box li {
-      margin-bottom: 8px;
-    }
+.info-box ul {
+  margin-left: 20px;
+  color: #424242;
+}
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+.info-box li {
+  margin-bottom: 8px;
+}
+/* MOD-003-005: FIN */
 
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      color: #333;
-      font-weight: 600;
-    }
+/* MOD-003-006: Grupos de formulario [INICIO] */
+.form-group {
+  margin-bottom: 20px;
+}
 
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 12px;
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      font-size: 1em;
-      transition: all 0.3s;
-    }
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 600;
+}
 
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
-    }
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: all 0.3s;
+}
 
-    .form-group textarea {
-      min-height: 150px;
-      font-family: 'Courier New', monospace;
-      resize: vertical;
-    }
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+}
 
-    .btn {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1.1em;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-      width: 100%;
-    }
+.form-group textarea {
+  min-height: 150px;
+  font-family: 'Courier New', monospace;
+  resize: vertical;
+}
+/* MOD-003-006: FIN */
 
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-    }
+/* MOD-003-007: Botones [INICIO] */
+.btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  width: 100%;
+}
 
-    .btn:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-      transform: none;
-    }
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
 
-    .result-box {
-      margin-top: 20px;
-      padding: 20px;
-      border-radius: 10px;
-      display: none;
-    }
+.btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+/* MOD-003-007: FIN */
 
-    .result-box.success {
-      background: #e8f5e9;
-      border: 2px solid #4caf50;
-      color: #2e7d32;
-    }
+/* MOD-003-008: Caja de resultado [INICIO] */
+.result-box {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+}
 
-    .result-box.error {
-      background: #ffebee;
-      border: 2px solid #f44336;
-      color: #c62828;
-    }
+.result-box.success {
+  background: #e8f5e9;
+  border: 2px solid #4caf50;
+  color: #2e7d32;
+}
 
-    .file-input-wrapper {
-      position: relative;
-      overflow: hidden;
-      display: inline-block;
-      width: 100%;
-    }
+.result-box.error {
+  background: #ffebee;
+  border: 2px solid #f44336;
+  color: #c62828;
+}
+/* MOD-003-008: FIN */
 
-    .file-input-wrapper input[type=file] {
-      position: absolute;
-      left: -9999px;
-    }
+/* MOD-003-009: Selector de archivo [INICIO] */
+.file-input-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+}
 
-    .file-input-label {
-      display: block;
-      padding: 12px;
-      background: #f5f5f5;
-      border: 2px dashed #ddd;
-      border-radius: 8px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
+.file-input-wrapper input[type=file] {
+  position: absolute;
+  left: -9999px;
+}
 
-    .file-input-label:hover {
-      background: #e0e0e0;
-      border-color: #667eea;
-    }
+.file-input-label {
+  display: block;
+  padding: 12px;
+  background: #f5f5f5;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
 
-    .file-name {
-      margin-top: 10px;
-      color: #666;
-      font-style: italic;
-    }
+.file-input-label:hover {
+  background: #e0e0e0;
+  border-color: #667eea;
+}
 
-    .tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #e0e0e0;
-    }
+.file-name {
+  margin-top: 10px;
+  color: #666;
+  font-style: italic;
+}
+/* MOD-003-009: FIN */
 
-    .tab {
-      padding: 12px 24px;
-      background: #f5f5f5;
-      border: none;
-      border-radius: 10px 10px 0 0;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s;
-      color: #666;
-    }
+/* MOD-003-010: Sistema de tabs [INICIO] */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
 
-    .tab:hover {
-      background: #e0e0e0;
-    }
+.tab {
+  padding: 12px 24px;
+  background: #f5f5f5;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  color: #666;
+}
 
-    .tab.active {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-    }
+.tab:hover {
+  background: #e0e0e0;
+}
 
-    .tab-content {
-      display: none;
-    }
+.tab.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
 
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.3s;
-    }
+.tab-content {
+  display: none;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.3s;
+}
+/* MOD-003-010: FIN */
 
-    @media (max-width: 768px) {
-      .header h1 {
-        font-size: 1.5em;
-      }
+/* MOD-003-011: Animaciones [INICIO] */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* MOD-003-011: FIN */
 
-      .content {
-        padding: 20px;
-      }
+/* MOD-003-012: Responsive [INICIO] */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.5em;
+  }
 
-      .btn-home {
-        position: static;
-        display: block;
-        margin-top: 15px;
-        width: 100%;
-      }
-    }
-  </style>
+  .content {
+    padding: 20px;
+  }
+
+  .btn-home {
+    position: static;
+    display: block;
+    margin-top: 15px;
+    width: 100%;
+  }
+}
+/* MOD-003-012: FIN */
+</style>
+<!-- MOD-003: FIN -->
+
+<!-- MOD-004: CIERRE HEAD Y APERTURA BODY [INICIO] -->
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>📊 Cargar Malla Matriz</h1>
-      <p>Configura las mallas curriculares por institución y carrera</p>
-      <button class="btn-home" onclick="goHome()">🏠 Home</button>
-    </div>
+<!-- MOD-004: FIN -->
 
-    <div class="content">
-      <div class="info-box">
-        <h3>📋 Estructura Requerida</h3>
-        <p>El archivo debe tener las siguientes columnas en orden:</p>
-        <ul>
-          <li><strong>Instituto:</strong> Nombre de la institución educativa</li>
-          <li><strong>Carrera:</strong> Nombre de la carrera</li>
-          <li><strong>Nivel:</strong> Número de nivel o ciclo</li>
-          <li><strong>Curso:</strong> Nombre del curso</li>
-          <li><strong>Créditos:</strong> Número de créditos del curso</li>
-        </ul>
-      </div>
-
-      <!-- Campos comunes -->
-      <div class="form-group">
-        <label for="institucion">Institución:</label>
-        <input type="text" id="institucion" placeholder="Ej: Universidad de Lima">
-      </div>
-
-      <div class="form-group">
-        <label for="carrera">Carrera:</label>
-        <input type="text" id="carrera" placeholder="Ej: Ingeniería Industrial">
-      </div>
-
-      <!-- Tabs -->
-      <div class="tabs">
-        <button class="tab active" onclick="cambiarTab('url')">🔗 Desde URL</button>
-        <button class="tab" onclick="cambiarTab('csv')">📄 Desde CSV</button>
-      </div>
-
-      <!-- Tab: Desde URL -->
-      <div id="tab-url" class="tab-content active">
-        <div class="form-group">
-          <label for="urlSheet">URL del Google Sheet:</label>
-          <input type="text" id="urlSheet" placeholder="https://docs.google.com/spreadsheets/d/...">
-        </div>
-
-        <button class="btn" onclick="cargarDesdeURL()">
-          ⬇️ Cargar desde URL
-        </button>
-      </div>
-
-      <!-- Tab: Desde CSV -->
-      <div id="tab-csv" class="tab-content">
-        <div class="form-group">
-          <label>Archivo CSV:</label>
-          <div class="file-input-wrapper">
-            <input type="file" id="csvFile" accept=".csv" onchange="mostrarNombreArchivo()">
-            <label for="csvFile" class="file-input-label">
-              📁 Seleccionar archivo CSV
-            </label>
-          </div>
-          <div class="file-name" id="fileName"></div>
-        </div>
-
-        <button class="btn" onclick="cargarDesdeCSV()">
-          ⬇️ Cargar desde CSV
-        </button>
-      </div>
-
-      <!-- Resultado -->
-      <div id="resultado" class="result-box"></div>
-    </div>
+<!-- MOD-005: ESTRUCTURA HTML PRINCIPAL [INICIO] -->
+<div class="container">
+  <div class="header">
+    <h1>📊 Cargar Malla Matriz</h1>
+    <p>Configura las mallas curriculares por institución y carrera</p>
+    <button class="btn-home" onclick="goHome()">🏠 Home</button>
   </div>
 
-  <script>
-    // ============================================
-    // NAVEGACIÓN
-    // ============================================
-    function goHome() {
-      window.location.href = window.location.origin + window.location.pathname;
-    }
+  <div class="content">
+    <div class="info-box">
+      <h3>📋 Estructura Requerida</h3>
+      <p>El archivo debe tener las siguientes columnas en orden:</p>
+      <ul>
+        <li><strong>Instituto:</strong> Nombre de la institución educativa</li>
+        <li><strong>Carrera:</strong> Nombre de la carrera</li>
+        <li><strong>Nivel:</strong> Número de nivel o ciclo</li>
+        <li><strong>Curso:</strong> Nombre del curso</li>
+        <li><strong>Créditos:</strong> Número de créditos del curso</li>
+      </ul>
+    </div>
 
-    // ============================================
-    // TABS
-    // ============================================
-    function cambiarTab(tab) {
-      // Actualizar tabs
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      event.target.classList.add('active');
+    <div class="form-group">
+      <label for="institucion">Institución:</label>
+      <input type="text" id="institucion" placeholder="Ej: Universidad de Lima">
+    </div>
 
-      // Actualizar contenido
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      document.getElementById('tab-' + tab).classList.add('active');
-    }
+    <div class="form-group">
+      <label for="carrera">Carrera:</label>
+      <input type="text" id="carrera" placeholder="Ej: Ingeniería Industrial">
+    </div>
 
-    // ============================================
-    // CARGAR DESDE URL
-    // ============================================
-    function cargarDesdeURL() {
-      const institucion = document.getElementById('institucion').value.trim();
-      const carrera = document.getElementById('carrera').value.trim();
-      const urlSheet = document.getElementById('urlSheet').value.trim();
+    <div class="tabs">
+      <button class="tab active" onclick="cambiarTab('url')">🔗 Desde URL</button>
+      <button class="tab" onclick="cambiarTab('csv')">📄 Desde CSV</button>
+    </div>
 
-      if (!urlSheet) {
-        mostrarError('Por favor ingresa la URL del Google Sheet');
-        return;
-      }
+    <div id="tab-url" class="tab-content active">
+      <div class="form-group">
+        <label for="urlSheet">URL del Google Sheet:</label>
+        <input type="text" id="urlSheet" placeholder="https://docs.google.com/spreadsheets/d/...">
+      </div>
 
-      mostrarCargando('Cargando malla desde URL...');
+      <button class="btn" onclick="cargarDesdeURL()">
+        ⬇️ Cargar desde URL
+      </button>
+    </div>
 
-      google.script.run
-        .withSuccessHandler(mostrarResultado)
-        .withFailureHandler(function(error) {
-          mostrarError('Error de conexión: ' + error.message);
-        })
-        .cargarMallaMatrizDesdeURL(institucion, carrera, urlSheet);
-    }
+    <div id="tab-csv" class="tab-content">
+      <div class="form-group">
+        <label>Archivo CSV:</label>
+        <div class="file-input-wrapper">
+          <input type="file" id="csvFile" accept=".csv" onchange="mostrarNombreArchivo()">
+          <label for="csvFile" class="file-input-label">
+            📁 Seleccionar archivo CSV
+          </label>
+        </div>
+        <div class="file-name" id="fileName"></div>
+      </div>
 
-    // ============================================
-    // CARGAR DESDE CSV
-    // ============================================
-    function mostrarNombreArchivo() {
-      const fileInput = document.getElementById('csvFile');
-      const fileName = document.getElementById('fileName');
-      
-      if (fileInput.files.length > 0) {
-        fileName.textContent = '📄 ' + fileInput.files[0].name;
-      } else {
-        fileName.textContent = '';
-      }
-    }
+      <button class="btn" onclick="cargarDesdeCSV()">
+        ⬇️ Cargar desde CSV
+      </button>
+    </div>
 
-    function cargarDesdeCSV() {
-      const institucion = document.getElementById('institucion').value.trim();
-      const carrera = document.getElementById('carrera').value.trim();
-      const fileInput = document.getElementById('csvFile');
+    <div id="resultado" class="result-box"></div>
+  </div>
+</div>
+<!-- MOD-005: FIN -->
 
-      if (!fileInput.files.length) {
-        mostrarError('Por favor selecciona un archivo CSV');
-        return;
-      }
+<!-- MOD-006: JAVASCRIPT [INICIO] -->
+<script>
+// MOD-006-001: Navegación [INICIO]
+function goHome() {
+  window.location.href = window.location.origin + window.location.pathname;
+}
+// MOD-006-001: FIN
 
-      mostrarCargando('Procesando archivo CSV...');
+// MOD-006-002: Sistema de tabs [INICIO]
+function cambiarTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
 
-      const file = fileInput.files[0];
-      const reader = new FileReader();
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+// MOD-006-002: FIN
 
-      reader.onload = function(e) {
-        const csvData = e.target.result;
-        
-        google.script.run
-          .withSuccessHandler(mostrarResultado)
-          .withFailureHandler(function(error) {
-            mostrarError('Error de conexión: ' + error.message);
-          })
-          .cargarMallaMatrizDesdeCSV(institucion, carrera, csvData);
-      };
+// MOD-006-003: Cargar desde URL [INICIO]
+function cargarDesdeURL() {
+  const institucion = document.getElementById('institucion').value.trim();
+  const carrera = document.getElementById('carrera').value.trim();
+  const urlSheet = document.getElementById('urlSheet').value.trim();
 
-      reader.onerror = function() {
-        mostrarError('Error al leer el archivo');
-      };
+  if (!urlSheet) {
+    mostrarError('Por favor ingresa la URL del Google Sheet');
+    return;
+  }
 
-      reader.readAsText(file);
-    }
+  mostrarCargando('Cargando malla desde URL...');
 
-    // ============================================
-    // UTILIDADES
-    // ============================================
-    function mostrarCargando(mensaje) {
-      const resultado = document.getElementById('resultado');
-      resultado.className = 'result-box';
-      resultado.style.display = 'block';
-      resultado.innerHTML = '<p>⏳ ' + mensaje + '</p>';
-    }
+  google.script.run
+    .withSuccessHandler(mostrarResultado)
+    .withFailureHandler(function(error) {
+      mostrarError('Error de conexión: ' + error.message);
+    })
+    .cargarMallaMatrizDesdeURL(institucion, carrera, urlSheet);
+}
+// MOD-006-003: FIN
 
-    function mostrarResultado(result) {
-      const resultado = document.getElementById('resultado');
-      resultado.style.display = 'block';
+// MOD-006-004: Mostrar nombre de archivo [INICIO]
+function mostrarNombreArchivo() {
+  const fileInput = document.getElementById('csvFile');
+  const fileName = document.getElementById('fileName');
+  
+  if (fileInput.files.length > 0) {
+    fileName.textContent = '📄 ' + fileInput.files[0].name;
+  } else {
+    fileName.textContent = '';
+  }
+}
+// MOD-006-004: FIN
 
-      if (result.success) {
-        resultado.className = 'result-box success';
-        resultado.innerHTML = '<h3>✅ ' + result.message + '</h3>';
-        
-        // Limpiar formulario
-        document.getElementById('urlSheet').value = '';
-        document.getElementById('csvFile').value = '';
-        document.getElementById('fileName').textContent = '';
-      } else {
-        resultado.className = 'result-box error';
-        resultado.innerHTML = '<h3>❌ ' + result.message + '</h3>';
-      }
-    }
+// MOD-006-005: Cargar desde CSV [INICIO]
+function cargarDesdeCSV() {
+  const institucion = document.getElementById('institucion').value.trim();
+  const carrera = document.getElementById('carrera').value.trim();
+  const fileInput = document.getElementById('csvFile');
 
-    function mostrarError(mensaje) {
-      const resultado = document.getElementById('resultado');
-      resultado.className = 'result-box error';
-      resultado.style.display = 'block';
-      resultado.innerHTML = '<h3>❌ ' + mensaje + '</h3>';
-    }
-  </script>
+  if (!fileInput.files.length) {
+    mostrarError('Por favor selecciona un archivo CSV');
+    return;
+  }
+
+  mostrarCargando('Procesando archivo CSV...');
+
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    const csvData = e.target.result;
+    
+    google.script.run
+      .withSuccessHandler(mostrarResultado)
+      .withFailureHandler(function(error) {
+        mostrarError('Error de conexión: ' + error.message);
+      })
+      .cargarMallaMatrizDesdeCSV(institucion, carrera, csvData);
+  };
+
+  reader.onerror = function() {
+    mostrarError('Error al leer el archivo');
+  };
+
+  reader.readAsText(file);
+}
+// MOD-006-005: FIN
+
+// MOD-006-006: Mostrar cargando [INICIO]
+function mostrarCargando(mensaje) {
+  const resultado = document.getElementById('resultado');
+  resultado.className = 'result-box';
+  resultado.style.display = 'block';
+  resultado.innerHTML = '<p>⏳ ' + mensaje + '</p>';
+}
+// MOD-006-006: FIN
+
+// MOD-006-007: Mostrar resultado [INICIO]
+function mostrarResultado(result) {
+  const resultado = document.getElementById('resultado');
+  resultado.style.display = 'block';
+
+  if (result.success) {
+    resultado.className = 'result-box success';
+    resultado.innerHTML = '<h3>✅ ' + result.message + '</h3>';
+    
+    document.getElementById('urlSheet').value = '';
+    document.getElementById('csvFile').value = '';
+    document.getElementById('fileName').textContent = '';
+  } else {
+    resultado.className = 'result-box error';
+    resultado.innerHTML = '<h3>❌ ' + result.message + '</h3>';
+  }
+}
+// MOD-006-007: FIN
+
+// MOD-006-008: Mostrar error [INICIO]
+function mostrarError(mensaje) {
+  const resultado = document.getElementById('resultado');
+  resultado.className = 'result-box error';
+  resultado.style.display = 'block';
+  resultado.innerHTML = '<h3>❌ ' + mensaje + '</h3>';
+}
+// MOD-006-008: FIN
+</script>
+<!-- MOD-006: FIN -->
+
+<!-- MOD-007: CIERRE BODY Y HTML [INICIO] -->
 </body>
 </html>
+<!-- MOD-007: FIN -->
+
+<!-- MOD-008: NOTAS [INICIO] -->
+<!--
+DESCRIPCIÓN:
+Interfaz HTML para cargar mallas curriculares desde URL de Google Sheets o archivos CSV.
+Sistema con tabs para seleccionar método de carga y validación de datos.
+
+MULTINIVEL OBLIGATORIO:
+- MOD-003-001 a 003-012: Dentro de <style> DEBE usar /* */
+- MOD-006-001 a 006-008: Dentro de <script> DEBE usar //
+
+DEPENDENCIAS:
+- MOD-006-003: Requiere google.script.run.cargarMallaMatrizDesdeURL del backend
+- MOD-006-005: Requiere google.script.run.cargarMallaMatrizDesdeCSV del backend
+- MOD-006-002: Requerido por botones de tabs en MOD-005
+-->
+<!-- MOD-008: FIN -->
