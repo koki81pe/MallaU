@@ -1,7 +1,7 @@
 // MOD-001: ENCABEZADO [INICIO]
 /*
 *****************************************
-PROYECTO: Plan Base Estudio
+PROYECTO: MallaU
 ARCHIVO: Code.gs
 VERSIÓN: 01.00
 FECHA: 10/02/2026 09:45 (UTC-5)
